@@ -53,5 +53,8 @@ module Rottenpotatoes
 
     # Assume model attributes are safe by default
     config.active_record.whitelist_attributes = false
-  end
+
+    config.assets.initialize_on_precompile = false
+
+    end
 end
