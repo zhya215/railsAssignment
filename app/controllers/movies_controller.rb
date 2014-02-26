@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings= Movie.all_ratings
-    @ratings=Hash[@all_ratings.map { |e| [e, 1] }]
+    @ratings=Hash[@all_ratings.map { |e| [e, 1] }] # Initialize ratings to contain all ratings in hash.
     @movies = Movie.all
     keys=@all_ratings
     redirect= false
@@ -58,7 +58,7 @@ class MoviesController < ApplicationController
       if !@ratings.empty? # If @ratings exists, it means that the action sort must consider those filtered movies.
         # Call sort_movies_with_filter is for getting the sorted movies that have been filtered.
         @movies = Movie.sort_movies_with_filter(keys, @sort) 
-      else # If @ratings doesn't exist, it means that 
+      else # If @ratings doesn't exist, it means that "sort" doesn't need to consider of filter.
         @movies= Movie.sort_movies(@sort)# get sorted movies.
       end
       session[:sort]=@sort
